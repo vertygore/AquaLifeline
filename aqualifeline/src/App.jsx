@@ -7,7 +7,8 @@ function App() {
     <>
       <header>
         <h1 id="logoheadline">AquaLifeline</h1>
-        <input type="textbox" placeholder="ENTER YOUR SYSTEM KEY HERE"></input>
+        <input type="textbox" placeholder="ENTER YOUR KEY"></input>
+        <button className="submit">VIEW SYSTEM</button>
       </header>
     </>
   );
