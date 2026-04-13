@@ -16,15 +16,23 @@ body {
   background-color: var(--cerulean);
   width: 100%;
   height: 100vh;
+
 }
 
-p {
+
+h1 {
   margin: 0;
   color: var(--light-yellow);
   text-align: center;
   padding: 2rem;
   font-size: 3rem;
   font-weight: bold;
+  letter-spacing: 0.5rem;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .chartwrapper canvas {
@@ -43,4 +51,40 @@ p {
   padding: 3rem;
   border-radius: 1rem;
   box-shadow: 0rem 0.4rem 0.8rem rgb(0, 0, 0, 0.7);
+}
+
+.add-chart {
+  border: none;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0rem 0.4rem 0.8rem rgb(0, 0, 0, 0.7);
+  color: white;
+  background-color: var(--vibrant-coral);
+  transition: 0.3s ease;
+  transform: scale(1);
+}
+
+.add-chart:hover {
+  transition: 0.3s ease;
+  transform: scale(1.1);
+  background-color: var(--bright-coral);
+}
+
+.add-chart:active {
+  transition: 0.3s ease;
+  transform: scale(0.9);
+  background-color: var(--vibrant-coral);
+}
+
+.addchart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
 }

@@ -1,5 +1,6 @@
 import "./SystemView.css";
 import { Chart } from "primereact";
+import 'primeicons/primeicons.css';
 
 function SystemView() {
   const data = {
@@ -40,9 +41,15 @@ function SystemView() {
 
   return (
     <div id="container">
-      <p>YOUR SYSTEM</p>
-      <div className="chartwrapper">
-        <Chart id="waterflowchart" type="line" data={data} options={options} />
+      <h1>YOUR SYSTEM</h1>
+      <div className="charts-container">
+        <div className="chartwrapper">
+          <Chart id="waterflowchart" type="line" data={data} options={options} />
+        </div>
+        <div className="addchart-wrapper">
+          <button className="add-chart" onClick={() => alert('bing')}><i className="pi pi-plus-circle"></i></button>
+        
+        </div>
       </div>
     </div>
   );
