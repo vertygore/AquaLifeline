@@ -43,6 +43,16 @@ function SystemView() {
           color: "#333",
         },
       },
+       title: {
+                display: true,
+                text: 'Dummy Chart',
+                font: {
+                  size: 30
+                },
+                padding: {
+                  bottom: 10
+                }
+            }
     },
     scales: {
       x: {

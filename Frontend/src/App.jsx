@@ -3,7 +3,6 @@ import "./App.css";
 import SystemView from "./SystemView";
 import HomeButton from "./HomeButton";
 
-
 function LoggedIn() {
   return <SystemView />;
 }
@@ -16,18 +15,28 @@ function App() {
       <Route
         path="/"
         element={
-          <header>
-            <HomeButton />
-            <h1>AquaLifeline</h1>
-            <input placeholder="E-MAIL" />
-            <input placeholder="PASSWORD" />
-            <button className='submit' onClick={() => navigate("/loggedIn")}>
-              LOGIN
-            </button>
-          </header>
+          <>
+            <header>
+              <HomeButton />
+              <h1>AquaLifeline</h1>
+              <input placeholder="E-MAIL" />
+              <input placeholder="PASSWORD" />
+              <button className="submit" onClick={() => navigate("/loggedIn")}>
+                LOGIN
+              </button>
+            </header>
+          </>
         }
       />
-      <Route path="/loggedIn" element={<><HomeButton /><LoggedIn /></>} />
+      <Route
+        path="/loggedIn"
+        element={
+          <>
+            <HomeButton />
+            <LoggedIn />
+          </>
+        }
+      />
     </Routes>
   );
 }
