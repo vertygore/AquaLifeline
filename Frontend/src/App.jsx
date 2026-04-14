@@ -2,9 +2,10 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import SystemView from "./SystemView";
 import HomeButton from "./HomeButton";
+import Footer from "./Footer";
 
 function LoggedIn() {
-  return <SystemView />;
+  return <><SystemView /><Footer /></>;
 }
 
 function App() {
@@ -18,13 +19,14 @@ function App() {
           <>
             <header>
               <HomeButton />
-              <h1>AquaLifeline</h1>
+              <h1 id="headtitle">AquaLifeline</h1>
               <input placeholder="E-MAIL" />
               <input placeholder="PASSWORD" />
               <button className="submit" onClick={() => navigate("/loggedIn")}>
                 LOGIN
               </button>
             </header>
+            <Footer />
           </>
         }
       />
