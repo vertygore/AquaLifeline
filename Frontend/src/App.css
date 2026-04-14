@@ -23,25 +23,23 @@ header {
 
 }
 
-h1 {
+button {
+  cursor: pointer;
+}
+
+#headtitle {
   color: var(--light-yellow);
   letter-spacing: 0.3rem;
   transition: 0.3s ease;
   cursor: default;
 }
 
-h1:hover {
+#headtitle:hover {
   color: var(--soft-apricot);
   transform: scaleX(1.1);
   transition: 0.3s ease;
 }
 
-p {
-  color: var(--light-yellow);
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: -0.5rem;
-}
 
 input {
   text-align: center;
