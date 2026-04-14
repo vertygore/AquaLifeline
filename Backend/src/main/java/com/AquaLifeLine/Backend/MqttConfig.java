@@ -9,18 +9,17 @@ import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.messaging.MessageChannel;
 
-
 @Configuration
 public class MqttConfig {
-    
-    @Value("${mgtt.broker.url}")
+
+    @Value("${mqtt.broker.url}")
     private String brokerUrl;
 
-    @Value("${mqtt.client.id}")
+    @Value("${mqtt.broker.client.id}")
     private String clientId;
 
     @Bean
-    public MqttPahoClientFactory mqttClientFactory(){
+    public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
         return factory;
     }
@@ -32,8 +31,8 @@ public class MqttConfig {
 
     @Bean
     public MqttPahoMessageDrivenChannelAdapter adapter() {
-        MqttPahoMessageDrivenChannelAdapter adapter = 
-            new MqttPahoMessageDrivenChannelAdapter(clientId, mqttClientFactory(), "sensor/#");
+        MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(clientId,
+                mqttClientFactory(), "sensor/#");
         adapter.setOutputChannel(mqttInputChannel());
         return adapter;
     }
