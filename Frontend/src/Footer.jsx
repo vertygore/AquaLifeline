@@ -1,5 +1,6 @@
 import "./Footer.css";
 import "primeicons/primeicons.css";
+import { Link } from "react-router";
 
 function Footer() {
   return (
@@ -7,10 +8,10 @@ function Footer() {
       <h1>ABOUT</h1>
       <div className="footerinside">
         <p>
-          <a href="">IMPRESSUM</a>
+          <Link to="/legal">IMPRESSUM</Link>
         </p>
         <p>
-          <a href="">DATENSCHUTZ</a>
+          <Link to="/legal">DATENSCHUTZ</Link>
         </p>
         <p>TEL.: 0611 676767</p>
       </div>
