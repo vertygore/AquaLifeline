@@ -31,7 +31,7 @@ public class DataService {
     public Data editData(long id, Data data) {
     return this.dataRepository.findById(id)
         .map(existingData -> {
-            existingData.setValue(data.getValue());
+            existingData.setDatenwert(data.getDatenwert());
             existingData.setTimestamp(data.getTimestamp());
             existingData.setSensor(data.getSensor());
             return this.dataRepository.save(existingData);

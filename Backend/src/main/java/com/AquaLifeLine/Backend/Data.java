@@ -19,7 +19,7 @@ public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    double value;
+    double datenwert;
     LocalDateTime timestamp;
 
     @ManyToOne
