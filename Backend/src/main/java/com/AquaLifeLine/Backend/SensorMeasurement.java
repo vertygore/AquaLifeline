@@ -20,7 +20,7 @@ public class SensorMeasurement {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    private Double value;
+    private Double messwert;
     private LocalDateTime timeStamp;
 
     @ManyToOne

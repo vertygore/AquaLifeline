@@ -3,6 +3,9 @@ package com.AquaLifeLine.Backend;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DataService {
 
     private final DataRepository dataRepository;
@@ -31,7 +34,7 @@ public class DataService {
     public Data editData(long id, Data data) {
     return this.dataRepository.findById(id)
         .map(existingData -> {
-            existingData.setValue(data.getValue());
+            existingData.setDatenwert(data.getDatenwert());
             existingData.setTimestamp(data.getTimestamp());
             existingData.setSensor(data.getSensor());
             return this.dataRepository.save(existingData);

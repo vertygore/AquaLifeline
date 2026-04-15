@@ -1,6 +1,14 @@
 spring:
   application:
     name: Backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aquarium_monitoring
+    username: postgres
+    password: DEIN_PASSWORT
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 mqtt:
   broker:
     url: tcp://localhost:1883
