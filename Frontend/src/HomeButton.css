@@ -28,3 +28,8 @@
   transition: 0.2s ease;
   background-color: var(--bright-coral);
 }
+
+img {
+  max-width: 3rem;
+  max-height: auto;
+}
