@@ -3,9 +3,15 @@ import "./App.css";
 import SystemView from "./SystemView";
 import HomeButton from "./HomeButton";
 import Footer from "./Footer";
+import Legal from "./Legal";
 
 function LoggedIn() {
-  return <><SystemView /><Footer /></>;
+  return (
+    <>
+      <SystemView />
+      <Footer />
+    </>
+  );
 }
 
 function App() {
@@ -36,6 +42,16 @@ function App() {
           <>
             <HomeButton />
             <LoggedIn />
+          </>
+        }
+      />
+
+      <Route
+        path="/legal"
+        element={
+          <>
+            <HomeButton />
+            <Legal/>
           </>
         }
       />
