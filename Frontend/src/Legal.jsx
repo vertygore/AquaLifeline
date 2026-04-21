@@ -1,4 +1,4 @@
-import "./Legal.css";
+import "./css/Legal.css";
 import "primeicons/primeicons.css";
 
 function Legal() {

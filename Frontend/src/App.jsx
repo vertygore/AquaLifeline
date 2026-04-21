@@ -1,9 +1,10 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import "./App.css";
+import "./css/App.css";
 import SystemView from "./SystemView";
 import HomeButton from "./HomeButton";
 import Footer from "./Footer";
 import Legal from "./Legal";
+import Shop from "./Shop";
 
 function LoggedIn() {
   return (
@@ -25,9 +26,21 @@ function App() {
           <>
             <div className="homepage">
               <HomeButton />
-              <h1 id="headtitle">AquaLifeline</h1>
+              <div className="greeting">
+                <h1 id="headtitle">AquaLifeline.</h1>
+                <h2 id="headsubtitle">Kleine Fische. Große Ansprüche.</h2>
+              </div>
+              <img
+                src="/AquaLifeline/landingpage1.jpg"
+                alt="Aquarium"
+                id="landingpage-pic"
+              />
               <button className="loginnav" onClick={() => navigate("/login")}>
-                LOGIN
+                GET STARTED
+              </button>
+
+              <button className="loginnav" onClick={() => navigate("/shop")}>
+                SHOP
               </button>
             </div>
             <Footer />
@@ -35,7 +48,7 @@ function App() {
         }
       />
 
-        <Route
+      <Route
         path="/login"
         element={
           <>
@@ -68,7 +81,17 @@ function App() {
         element={
           <>
             <HomeButton />
-            <Legal/>
+            <Legal />
+          </>
+        }
+      />
+
+      <Route
+        path="/shop"
+        element={
+          <>
+            <HomeButton />
+            <Shop />
           </>
         }
       />
