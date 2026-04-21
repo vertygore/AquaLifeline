@@ -1,5 +1,6 @@
 package com.AquaLifeLine.Backend;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,18 @@ public class SensorData {
     private Long id;
 
     private String deviceId;
-    private double temperature;
-    private double ph;
+    
+    @Column(nullable=true)
+    private double Temperatur;
+    @Column(nullable=true)
+    private double PH;
+
+    @Column(nullable=true)
+    private double Wasserstand;
+    
+    @Column(nullable=true)
+    private double Wasserqualitaet;
+
     private long timestamp;
 
     @ManyToOne

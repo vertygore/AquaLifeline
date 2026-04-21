@@ -30,8 +30,10 @@ public class MqttMessageHandler {
 
             SensorData data = new SensorData();
             data.setDeviceId(json.get("deviceId").asText());
-            data.setTemperature(json.get("temperature").asDouble());
-            data.setPh(json.get("ph").asDouble());
+            data.setTemperatur(json.get("temperature").asDouble());
+            data.setPH(json.get("ph").asDouble());
+            data.setWasserstand(json.get("wasserstand").asDouble());
+            data.setWasserqualitaet(json.get("wasserqualitaet").asDouble());
             data.setTimestamp(System.currentTimeMillis());
             sensorDataRepository.save(data);
         } catch (Exception e) {
