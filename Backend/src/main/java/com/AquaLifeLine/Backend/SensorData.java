@@ -17,6 +17,7 @@ public class SensorData {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable=true)
     private String deviceId;
     
     @Column(nullable=true)

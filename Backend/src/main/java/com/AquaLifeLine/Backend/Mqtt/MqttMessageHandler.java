@@ -1,13 +1,11 @@
 package com.AquaLifeLine.Backend.Mqtt;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 
 import com.AquaLifeLine.Backend.SensorData;
 import com.AquaLifeLine.Backend.SensorDataRepository;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,11 +27,11 @@ public class MqttMessageHandler {
             JsonNode json = objectMapper.readTree(payload);
 
             SensorData data = new SensorData();
-            data.setDeviceId(json.get("deviceId").asText());
-            data.setTemperatur(json.get("temperature").asDouble());
-            data.setPH(json.get("ph").asDouble());
-            data.setWasserstand(json.get("wasserstand").asDouble());
-            data.setWasserqualitaet(json.get("wasserqualitaet").asDouble());
+            data.setDeviceId(json.path("deviceId").asText("unknown"));
+            data.setTemperatur(json.path("Temperatur").asDouble(0));
+            data.setPH(json.path("PH").asDouble(0));
+            data.setWasserstand(json.path("Wasserstand").asDouble(0));
+            data.setWasserqualitaet(json.path("Wasserqualitaet").asDouble(0));
             data.setTimestamp(System.currentTimeMillis());
             sensorDataRepository.save(data);
         } catch (Exception e) {
