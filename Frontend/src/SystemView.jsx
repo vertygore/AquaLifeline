@@ -1,11 +1,15 @@
 import "./SystemView.css";
-import { Chart, Dialog, Button, InputText } from "primereact";
+import { Chart } from "primereact/chart";
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { Calendar } from "primereact/calendar";
 import "primeicons/primeicons.css";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/primereact.min.css";
 import { useState } from "react";
 
-
 function addSystem(hideElement, name, chartsArray, setCharts, lastId) {
-
   const data1 = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     datasets: [
@@ -35,7 +39,6 @@ function addSystem(hideElement, name, chartsArray, setCharts, lastId) {
       },
     ],
   };
-
 
   const options2 = {
     responsive: true,
@@ -71,33 +74,46 @@ function addSystem(hideElement, name, chartsArray, setCharts, lastId) {
     },
   };
 
-  let newId = lastId+1;
-  setCharts([...chartsArray, {id: newId, data: data1, options: options2 }]);
+  let newId = lastId + 1;
+  setCharts([
+    ...chartsArray,
+    { id: newId, data: data1, options: options2, dates: null },
+  ]);
   hideElement();
 }
 
 function SystemView() {
-  
   const [charts, setCharts] = useState([]);
   const [visible, setVisible] = useState(false);
   const [serialId, setSerialId] = useState("");
+  const [dates, setDates] = useState(null);
 
   return (
     <>
       <div id="container" className={visible ? "blurred" : ""}>
         <h1>YOUR SYSTEMS</h1>
         <div className="charts-container">
-          {charts.length != 0 ? charts.map((chart) => (
-            <div className="chartwrapper">
-              <Chart
-                key={chart.id}
-                id={chart.id}
-                type="line"
-                data={chart.data}
-                options={chart.options}
-              />
+          {charts.map((chart) => (
+            <div className="chart-group" key={chart.id}>
+              <div className="chartwrapper">
+                <Chart
+                  id={chart.id}
+                  type="line"
+                  data={chart.data}
+                  options={chart.options}
+                />
+              </div>
+              <div className="calendar-wrapper">
+                <Calendar
+                  value={dates}
+                  onChange={(e) => setDates(e.value)}
+                  selectionMode="range"
+                  readOnlyInput
+                  hideOnRangeSelection
+                />
+              </div>
             </div>
-          )) :  null}
+          ))}
         </div>
         <div className="addchart-wrapper">
           <Button
@@ -120,18 +136,30 @@ function SystemView() {
           dismissableMask
           onHide={() => {
             if (!visible) return;
-            setVisible(false); 
+            setVisible(false);
           }}
           content={({ hide }) => (
             <div className="dialog-wrapper">
               <div className="addchart-input">
                 <label id="input-title">SERIAL ID:</label>
-                <InputText id="serial-id" label="Serial ID" onChange={(e) => setSerialId(e.target.value)}></InputText>
+                <InputText
+                  id="serial-id"
+                  label="Serial ID"
+                  onChange={(e) => setSerialId(e.target.value)}
+                ></InputText>
               </div>
               <div className="btn-wrapper">
                 <Button
                   label="Add System"
-                  onClick={(e) => addSystem(hide, serialId, charts, setCharts, charts.length > 0 ? charts.at(-1).id : 0)}
+                  onClick={(e) =>
+                    addSystem(
+                      hide,
+                      serialId,
+                      charts,
+                      setCharts,
+                      charts.length > 0 ? charts.at(-1).id : 0,
+                    )
+                  }
                   text
                   className="btn"
                 ></Button>

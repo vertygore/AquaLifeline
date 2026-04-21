@@ -4,6 +4,7 @@ import SystemView from "./SystemView";
 import HomeButton from "./HomeButton";
 import Footer from "./Footer";
 import Legal from "./Legal";
+import Shop from "./Shop";
 
 function LoggedIn() {
   return (
@@ -34,13 +35,13 @@ function App() {
                 alt="Aquarium"
                 id="landingpage-pic"
               />
-              {
-              /*
               <button className="loginnav" onClick={() => navigate("/login")}>
-                LOGIN
+                GET STARTED
               </button>
-            */
-        }
+
+              <button className="loginnav" onClick={() => navigate("/shop")}>
+                SHOP
+              </button>
             </div>
             <Footer />
           </>
@@ -81,6 +82,16 @@ function App() {
           <>
             <HomeButton />
             <Legal />
+          </>
+        }
+      />
+
+      <Route
+        path="/shop"
+        element={
+          <>
+            <HomeButton />
+            <Shop />
           </>
         }
       />

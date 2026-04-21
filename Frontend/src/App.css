@@ -54,6 +54,8 @@ button {
 }
 
 .greeting {
+  margin-top: 10rem;
+  margin-bottom: 4rem;
   position: relative;
   z-index: 500;
   display: flex;
