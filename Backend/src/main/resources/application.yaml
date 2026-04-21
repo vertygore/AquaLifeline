@@ -2,9 +2,11 @@ spring:
   application:
     name: Backend
   datasource:
-    url: jdbc:postgresql://10.93.128.209:5432/aquarium_monitoring # Replace with valid Data
-    username: postgres
-    password: Start1234!
+    initialization-mode: never
+    # url: jdbc:postgresql://10.93.128.209:5432/aquarium_monitoring # Replace with valid Data
+    # username: postgres
+    # password: Start1234!
+    
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,4 +15,4 @@ mqtt:
   broker:
     url: tcp://10.93.128.211:1883
     client:
-      id:SpringBootClient
+      id: SpringBootClient

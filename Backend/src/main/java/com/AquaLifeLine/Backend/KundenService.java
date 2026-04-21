@@ -24,4 +24,8 @@ public class KundenService {
     public Kunde saveKunde(Kunde kunde) {
         return this.kundenRepository.save(kunde);
     }
+
+    public void deleteKunde(long id) {
+        this.kundenRepository.deleteById(id);
+    }
 }

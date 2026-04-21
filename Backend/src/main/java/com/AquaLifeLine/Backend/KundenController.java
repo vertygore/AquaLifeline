@@ -2,6 +2,7 @@ package com.AquaLifeLine.Backend;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,5 +33,10 @@ public class KundenController {
     @PostMapping
     public Kunde createKunde(@RequestBody Kunde kunde) {
         return userService.saveKunde(kunde);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteKunde(@PathVariable long id) {
+        userService.deleteKunde(id);
     }
 }
