@@ -1,4 +1,4 @@
-import "./SystemView.css";
+import "./css/SystemView.css";
 import { Chart } from "primereact/chart";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";

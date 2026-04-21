@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "./css/Footer.css";
 import "primeicons/primeicons.css";
 import { Link } from "react-router";
 
