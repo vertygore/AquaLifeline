@@ -25,5 +25,4 @@ public class Data {
     @ManyToOne
     @JoinColumn(name = "aquarium_id")
     private Aquarium aquarium;
-
 }

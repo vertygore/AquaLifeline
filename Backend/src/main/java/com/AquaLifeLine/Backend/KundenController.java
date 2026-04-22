@@ -18,12 +18,6 @@ public class KundenController {
         this.userService = userService;
     }
 
-    /* 
-    @GetMapping
-    public List<Kunde> getAllKunden() {
-        return userService.getAllKunden();
-    }
-    */
     @GetMapping("/{name}")
     public Kunde getKundeByName(@PathVariable String name) {
         return userService.getKundeByName(name);

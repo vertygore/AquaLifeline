@@ -13,8 +13,8 @@ public class KundenService {
         this.kundenRepository = kundenRepository;
     }
 
-    public List<Kunde> getAllKunden() {
-        return this.kundenRepository.findAll();
+    public Kunde getKundeById(long id) {
+        return this.kundenRepository.getKundeById(id);
     }
 
     public Kunde getKundeByName(String name) {

@@ -8,11 +8,3 @@ public interface AquariumRepository extends org.springframework.data.jpa.reposit
     boolean existsBySerialNumber(String serialNumber);
 }
 
-
-public interface AquariumRepository extends org.springframework.data.jpa.repository.JpaRepository<Aquarium, Long> {
-    boolean existsBySerialNumber(String serialNumber);
-    
-    public List<Aquarium> getFullData() {
-    return aquariumRepository.findAllWithSensorsAndData();
-}
-}

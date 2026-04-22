@@ -19,8 +19,12 @@ public class Aquarium {
 
     @Column(unique = true)
     private String serialNumber;
+    
+    @OneToMany(mappedBy = "aquarium")
+    private List<Data> dataList;
 
-    @ManyToMany(mappedBy = "aquarien")
-    private java.util.Set<Kunde> kunden;
+    @ManyToOne
+    @JoinColumn(name = "kunde_id")
+    private Kunde kunde;
 }
 
