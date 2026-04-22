@@ -27,11 +27,6 @@ public class DataController {
         return dataService.getAllData();
     }
 
-    @GetMapping("/device/{deviceId}")
-    public List<Data> getDataByDeviceId(@PathVariable Long deviceId){
-        return dataService.getDataByDeviceId(deviceId);
-    }
-
     @GetMapping("/timestamp")
     public List<Data> getDataByTimestamp(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end){
         return dataService.getDataByTimestamp(start, end);

@@ -1,7 +1,5 @@
 package com.AquaLifeLine.Backend;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +18,12 @@ public class KundenController {
         this.userService = userService;
     }
 
+    /* 
     @GetMapping
     public List<Kunde> getAllKunden() {
         return userService.getAllKunden();
     }
-
+    */
     @GetMapping("/{name}")
     public Kunde getKundeByName(@PathVariable String name) {
         return userService.getKundeByName(name);
