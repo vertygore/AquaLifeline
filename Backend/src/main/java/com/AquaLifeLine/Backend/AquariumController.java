@@ -17,13 +17,11 @@ public class AquariumController {
     public AquariumController(AquariumService aquariumService) {
         this.aquariumService = aquariumService;
     }
-
-    /* 
     @GetMapping
     public List<Aquarium> getAllAquariums() {
         return aquariumService.getAllAquariums();
     }
-    */
+    
 
     @GetMapping("/{id}")
     public Aquarium getAquariumById(@PathVariable long id) {

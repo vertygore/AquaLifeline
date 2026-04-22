@@ -23,3 +23,4 @@ public class Aquarium {
     @ManyToMany(mappedBy = "aquarien")
     private java.util.Set<Kunde> kunden;
 }
+
