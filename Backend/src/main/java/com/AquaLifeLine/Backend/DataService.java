@@ -16,14 +16,13 @@ public class DataService {
 
     public List<Data> getAllData(){
         return this.dataRepository.findAll();
-        
     }
 
     public Data saveData(Data data) {
         return this.dataRepository.save(data);
     }
 
-    public List<Data> getDataByTimestamp(LocalDateTime start, LocalDateTime end) {
+    public List<Data> findByTimestampBetween(LocalDateTime start, LocalDateTime end) {
         return this.dataRepository.findByTimestampBetween(start, end);
     }
 
@@ -32,7 +31,6 @@ public class DataService {
         .map(existingData -> {
             existingData.setDatenwert(data.getDatenwert());
             existingData.setTimestamp(data.getTimestamp());
-            existingData.setSensor(data.getSensor());
             return this.dataRepository.save(existingData);
         })
         .orElseThrow(() -> new RuntimeException("Data not found with id " + id));

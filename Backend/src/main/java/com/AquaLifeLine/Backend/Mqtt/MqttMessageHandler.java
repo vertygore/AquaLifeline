@@ -1,5 +1,7 @@
 package com.AquaLifeLine.Backend.Mqtt;
 
+import java.time.LocalDateTime;
+
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,7 @@ public class MqttMessageHandler {
             data.setPH(json.path("PH").asDouble(0));
             data.setWasserstand(json.path("Wasserstand").asDouble(0));
             data.setWasserqualitaet(json.path("Wasserqualitaet").asDouble(0));
-            data.setTimestamp(System.currentTimeMillis());
+            data.setTimestamp(LocalDateTime.now());
             sensorDataRepository.save(data);
         } catch (Exception e) {
             System.err.println("Fehler beim Verarbeiten der MQTT-Nachricht: " + e.getMessage());
