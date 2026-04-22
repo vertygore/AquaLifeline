@@ -13,10 +13,6 @@ public class AquariumService {
     public boolean existsBySerialNumber(String serialNumber) {
         return this.aquariumRepository.existsBySerialNumber(serialNumber);
     }
-     
-    public List<Aquarium> getAllAquariums() {
-        return this.aquariumRepository.findAllWithRelations();
-    }
     
     public Aquarium saveAquarium(Aquarium aquarium) {
         return this.aquariumRepository.save(aquarium);
