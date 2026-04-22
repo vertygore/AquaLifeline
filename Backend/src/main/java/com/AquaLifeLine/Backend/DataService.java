@@ -23,10 +23,6 @@ public class DataService {
         return this.dataRepository.save(data);
     }
 
-    public List<Data> getDataByDeviceId(long deviceId) {
-        return this.dataRepository.findBySensor_id(deviceId);
-    }
-
     public List<Data> getDataByTimestamp(LocalDateTime start, LocalDateTime end) {
         return this.dataRepository.findByTimestampBetween(start, end);
     }
