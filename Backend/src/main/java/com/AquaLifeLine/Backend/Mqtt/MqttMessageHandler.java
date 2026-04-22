@@ -29,7 +29,6 @@ public class MqttMessageHandler {
             JsonNode json = objectMapper.readTree(payload);
 
             SensorData data = new SensorData();
-            data.setDeviceId(json.path("deviceId").asText("unknown"));
             data.setTemperatur(json.path("Temperatur").asDouble(0));
             data.setPH(json.path("PH").asDouble(0));
             data.setWasserstand(json.path("Wasserstand").asDouble(0));

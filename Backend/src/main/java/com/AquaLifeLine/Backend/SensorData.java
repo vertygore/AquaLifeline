@@ -18,10 +18,8 @@ public class SensorData {
     private Long id;
 
     @Column(nullable=true)
-    private String deviceId;
-    
-    @Column(nullable=true)
     private double Temperatur;
+    
     @Column(nullable=true)
     private double PH;
 
