@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +22,4 @@ public class Aquarium {
 
     @ManyToMany(mappedBy = "aquarien")
     private java.util.Set<Kunde> kunden;
-
-    @OneToMany(mappedBy = "aquarium")
-    private java.util.List<Sensor> sensoren;
 }

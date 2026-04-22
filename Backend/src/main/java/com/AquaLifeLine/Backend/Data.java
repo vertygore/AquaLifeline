@@ -23,7 +23,7 @@ public class Data {
     LocalDateTime timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "sensor_id")
-    private Sensor sensor;
+    @JoinColumn(name = "aquarium_id")
+    private Aquarium aquarium;
 
 }

@@ -28,8 +28,8 @@ public class DataController {
     }
 
     @GetMapping("/timestamp")
-    public List<Data> getDataByTimestamp(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end){
-        return dataService.getDataByTimestamp(start, end);
+    public List<Data> findByTimestampBetween(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end){
+        return dataService.findByTimestampBetween(start, end);
     }
 
     @PostMapping("/create")
