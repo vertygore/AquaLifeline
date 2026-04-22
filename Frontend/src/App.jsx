@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import "./App.css";
+import "./css/App.css";
 import SystemView from "./SystemView";
 import HomeButton from "./HomeButton";
 import Footer from "./Footer";

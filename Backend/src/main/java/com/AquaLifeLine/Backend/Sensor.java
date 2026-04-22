@@ -7,6 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,4 +23,11 @@ public class Sensor {
 
     @Enumerated(EnumType.STRING)//Falls mehr Sensorarten hinzukommen, in SensorType erweitern.
     private SensorType sensorType;
+
+    @ManyToOne
+    @JoinColumn(name = "aquarium_id")
+    private Aquarium aquarium;
+    
+    @OneToOne(mappedBy = "sensor")
+    private SensorData sensorData;
 }

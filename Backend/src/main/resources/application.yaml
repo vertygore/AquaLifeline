@@ -2,9 +2,9 @@ spring:
   application:
     name: Backend
   datasource:
-    url: jdbc:postgresql://10.93.128.211:5432/aquarium_db # Replace with valid Data
-    username: aquarium_admin
-    password: Start1234!
+      url: jdbc:mysql://localhost:3306/aqualifelinedb
+      username: root
+      password: root
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,4 +13,4 @@ mqtt:
   broker:
     url: tcp://10.93.128.211:1883
     client:
-      id:SpringBootClient
+      id: SpringBootClient
