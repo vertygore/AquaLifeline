@@ -1,4 +1,4 @@
-FROM maven:3.9.6-eclipse-temurin-23 AS build
+FROM maven:3-eclipse-temurin-23 AS build
 WORKDIR /app
 COPY . .
 RUN cd Backend && mvn package -DskipTests
