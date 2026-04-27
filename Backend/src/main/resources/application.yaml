@@ -2,9 +2,9 @@ spring:
   application:
     name: Backend
   datasource:
-      url: jdbc:mysql://localhost:3306/aqualifelinedb
-      username: root
-      password: root
+      url: postgresql://postgres:fes-wiesbadenIOT2026@db.kemipulauyfisfvlsedn.supabase.co:5432/postgres
+      username: postgres
+      password: fes-wiesbadenIOT2026
   jpa:
     hibernate:
       ddl-auto: update

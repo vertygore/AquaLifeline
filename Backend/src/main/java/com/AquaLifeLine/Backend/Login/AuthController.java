@@ -32,7 +32,7 @@ public class AuthController {
         }
         kunde.setName(request.getName());
         // Passwort verschlüsseln
-        kunde.setPassword(passwordEncoder.encode(kunde.getPassword()));
+        kunde.setPassword(passwordEncoder.encode(request.getPassword()));
         kundenService.saveKunde(kunde);
         return ResponseEntity.ok("Registrierung erfolgreich");
     }
