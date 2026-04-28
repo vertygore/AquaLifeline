@@ -25,18 +25,18 @@ public class AquariumController {
     }
 
     @GetMapping
-    public List<Aquarium> getAquarienByKunde(Principal principal){
+    public List<Aquarium> getAquarienByKunde(Principal principal) {
         Kunde kunde = kundenService.getKundeByName(principal.getName());
         return aquariumService.getAquarienByKunde(kunde);
     }
 
     @GetMapping("/health")
-    public ResponseEntity<?> healthCheck(){
+    public ResponseEntity<?> healthCheck() {
         return ResponseEntity.ok("Ok");
     }
 
     @GetMapping("/serialNumber/{serialNumber}")
-    public Aquarium findAquariumBySerialNumber(@PathVariable String serialNumber){
+    public Aquarium findAquariumBySerialNumber(@PathVariable String serialNumber) {
         return this.aquariumService.findBySerialNumber(serialNumber);
     }
 
@@ -45,15 +45,28 @@ public class AquariumController {
         return aquariumService.getAquariumById(id);
     }
 
-    @PostMapping
-    public Aquarium createAquarium(@RequestBody Aquarium aquarium, Principal principal) {
+    @PostMapping("/assign/{serialNumber}")
+    public ResponseEntity<?> assignAquarium(@PathVariable String serialNumber, Principal principal) {
+        Aquarium aquarium = aquariumService.findBySerialNumber(serialNumber);
+        if (aquarium == null) {
+            return ResponseEntity.status(404).body("Aquarium nicht gefunden.");
+        }
         Kunde kunde = kundenService.getKundeByName(principal.getName());
+        if(kunde.getAquarien().contains(aquarium)){
+            return ResponseEntity.status(404).body("Aquarium bereits zugewiesen.");
+        }
+        kunde.getAquarien().add(aquarium);
+        kundenService.saveKunde(kunde);
+        return ResponseEntity.ok("Aquarium erfolgreich hinzugefügt.");
+    }
+
+    @PostMapping
+    public Aquarium createAquarium(@RequestBody Aquarium aquarium) {
         do {
             aquarium.setSerialNumber(SerialNumberGenerator.generateSerialNumber());
         } while (aquariumService.existsBySerialNumber(aquarium.getSerialNumber()));
         aquariumService.saveAquarium(aquarium);
-        kunde.getAquarien().add(aquarium);
-        kundenService.saveKunde(kunde);
+        
         return aquarium;
     }
 
