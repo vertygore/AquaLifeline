@@ -42,15 +42,13 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedOrigins(List.of("https://yourusername.github.io", "http://localhost:5173"));
         configuration.setAllowedMethods(List.of("POST", "GET", "DELETE", "PUT", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
-        return source -> {
-            UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
-            urlSource.registerCorsConfiguration("/**", configuration);
-            return  urlSource.getCorsConfiguration(source);
-        };
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
