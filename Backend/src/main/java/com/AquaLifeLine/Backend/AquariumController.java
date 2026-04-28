@@ -29,6 +29,11 @@ public class AquariumController {
         return aquariumService.getAquarienByKunde(kunde);
     }
 
+    @GetMapping("/serialNumber")
+    public Aquarium findAquariumBySerialNumber(@RequestBody String serialNumber){
+        return this.aquariumService.findBySerialNumber(serialNumber);
+    }
+
     @GetMapping("/{id}")
     public Aquarium getAquariumById(@PathVariable long id) {
         return aquariumService.getAquariumById(id);
