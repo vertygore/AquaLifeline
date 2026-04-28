@@ -3,6 +3,7 @@ package com.AquaLifeLine.Backend;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +30,13 @@ public class AquariumController {
         return aquariumService.getAquarienByKunde(kunde);
     }
 
-    @GetMapping("/serialNumber")
-    public Aquarium findAquariumBySerialNumber(@RequestBody String serialNumber){
+    @GetMapping("/health")
+    public ResponseEntity<?> healthCheck(){
+        return ResponseEntity.ok("Ok");
+    }
+
+    @GetMapping("/serialNumber/{serialNumber}")
+    public Aquarium findAquariumBySerialNumber(@PathVariable String serialNumber){
         return this.aquariumService.findBySerialNumber(serialNumber);
     }
 
