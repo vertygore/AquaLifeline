@@ -24,6 +24,7 @@ public class JWTUtil {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
+    // Token generieren
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -33,7 +34,7 @@ public class JWTUtil {
                 .compact();
 
     }
-
+    // Benutzernamen aus Token auslesen.
     public String extractUsername(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)

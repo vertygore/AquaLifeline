@@ -1,5 +1,8 @@
 package com.AquaLifeLine.Backend;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/aquarien")
 public class AquariumController {
-    
-    private final AquariumService aquariumService;
 
-    public AquariumController(AquariumService aquariumService) {
+    private final AquariumService aquariumService;
+    private final KundenService kundenService;
+
+    public AquariumController(AquariumService aquariumService, KundenService kundenService) {
         this.aquariumService = aquariumService;
+        this.kundenService = kundenService;
+    }
+
+    @GetMapping
+    public List<Aquarium> getAquarienByKunde(Principal principal){
+        Kunde kunde = kundenService.getKundeByName(principal.getName());
+        return aquariumService.getAquarienByKunde(kunde);
     }
 
     @GetMapping("/{id}")
@@ -24,11 +35,15 @@ public class AquariumController {
     }
 
     @PostMapping
-    public Aquarium createAquarium(@RequestBody Aquarium aquarium) {
+    public Aquarium createAquarium(@RequestBody Aquarium aquarium, Principal principal) {
+        Kunde kunde = kundenService.getKundeByName(principal.getName());
         do {
             aquarium.setSerialNumber(SerialNumberGenerator.generateSerialNumber());
         } while (aquariumService.existsBySerialNumber(aquarium.getSerialNumber()));
-        return aquariumService.saveAquarium(aquarium);
+        aquariumService.saveAquarium(aquarium);
+        kunde.getAquarien().add(aquarium);
+        kundenService.saveKunde(kunde);
+        return aquarium;
     }
 
     @DeleteMapping("/{id}")

@@ -23,26 +23,31 @@ public class AuthController {
 
     @Autowired private PasswordEncoder passwordEncoder;
 
-    
+    // Neuen Account erstellen 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest request) {
         Kunde kunde = new Kunde();
+        // Check ob der übergebene Name bereits vergeben ist.
         if(kundenService.getKundeByName(request.getName()) != null) {
            return ResponseEntity.status(409).body("Name bereits vergeben");
         }
         kunde.setName(request.getName());
-        // Passwort verschlüsseln
+        // Passwort verschlüsseln.
         kunde.setPassword(passwordEncoder.encode(request.getPassword()));
+        // Kunde in Datenbank speichern.
         kundenService.saveKunde(kunde);
         return ResponseEntity.ok("Registrierung erfolgreich");
     }
 
+    // In Account einloggen
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {
         Kunde kunde = kundenService.getKundeByName(request.getName());
+        // Anmeldedaten überprüfen.
         if (kunde == null || !passwordEncoder.matches(request.getPassword(), kunde.getPassword())){
             return ResponseEntity.status(401).body("Ungültige Anmeldedaten");
         }
+        // Token erstellen.
         String token = jwtUtil.generateToken(kunde.getName());
         return ResponseEntity.ok(new AuthResponse(token));
     }

@@ -1,5 +1,8 @@
 package com.AquaLifeLine.Backend;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,13 +16,22 @@ public class AquariumService {
     public boolean existsBySerialNumber(String serialNumber) {
         return this.aquariumRepository.existsBySerialNumber(serialNumber);
     }
-    
+
+    public Aquarium findBySerialNumber(String serialNumber) {
+        return this.aquariumRepository.findBySerialNumber(serialNumber);
+    }
+
+    public List<Aquarium> getAquarienByKunde(Kunde kunde) {
+        return new ArrayList<>(kunde.getAquarien());
+    }
+
     public Aquarium saveAquarium(Aquarium aquarium) {
         return this.aquariumRepository.save(aquarium);
     }
 
     public Aquarium getAquariumById(long id) {
-        return this.aquariumRepository.findById(id).orElseThrow(() -> new RuntimeException("Aquarium not found with id " + id));
+        return this.aquariumRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Aquarium not found with id " + id));
     }
 
     public void deleteAquarium(long id) {

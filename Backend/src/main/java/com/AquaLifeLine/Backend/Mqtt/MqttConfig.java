@@ -43,11 +43,12 @@ public class MqttConfig {
         return new DirectChannel();
     }
 
+    // Subscriber einrichten
     @Bean
     public MqttPahoMessageDrivenChannelAdapter adapter() {
         MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(clientId,
                 mqttClientFactory(),
-                "sensor/#");
+                "sensor/#"); //Alle Channel unter sensor subscriben
         adapter.setOutputChannel(mqttInputChannel());
         return adapter;
     }
