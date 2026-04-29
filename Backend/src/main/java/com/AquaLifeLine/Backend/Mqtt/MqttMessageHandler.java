@@ -28,13 +28,13 @@ public class MqttMessageHandler {
             System.out.println("MQTT erhalten: " + payload);
             JsonNode json = objectMapper.readTree(payload);
 
-            SensorData data = new SensorData();
-            data.setTemperatur(json.path("Temperatur").asDouble(0));
-            data.setPH(json.path("PH").asDouble(0));
-            data.setWasserstand(json.path("Wasserstand").asDouble(0));
-            data.setWasserqualitaet(json.path("Wasserqualitaet").asDouble(0));
-            data.setTimestamp(LocalDateTime.now());
-            sensorDataRepository.save(data);
+            SensorData sensordata = new SensorData();
+            sensordata.setTemperatur(json.path("Temperatur").asDouble(0));
+            sensordata.setPH(json.path("PH").asDouble(0));
+            sensordata.setWasserstand(json.path("Wasserstand").asDouble(0));
+            sensordata.setWasserqualitaet(json.path("Wasserqualitaet").asDouble(0));
+            sensordata.setTimestamp(LocalDateTime.now());
+            sensorDataRepository.save(sensordata);
         } catch (Exception e) {
             System.err.println("Fehler beim Verarbeiten der MQTT-Nachricht: " + e.getMessage());
         }
