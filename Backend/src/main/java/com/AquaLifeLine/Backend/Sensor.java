@@ -32,6 +32,6 @@ public class Sensor {
     @JoinColumn(name= "sensorSet_id")
     private SensorSet sensorSet;
 
-    @OneToMany(mappedBy = "sensorData_id")
+    @OneToMany(mappedBy = "sensor")
     private List<SensorData> daten;
 }
