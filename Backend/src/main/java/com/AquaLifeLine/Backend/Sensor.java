@@ -33,5 +33,5 @@ public class Sensor {
     private SensorSet sensorSet;
 
     @OneToMany(mappedBy = "sensorData_id")
-    private List<Data> daten;
+    private List<SensorData> daten;
 }
