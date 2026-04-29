@@ -21,15 +21,21 @@ public class MqttConfig {
     @Value("${mqtt.broker.client.id}")
     private String clientId;
 
+    @Value("${mqtt.broker.username}")
+    private String username;
+
+    @Value("${mqtt.broker.password}")
+    private String password;
+
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
-
         MqttConnectOptions options = new MqttConnectOptions();
         options.setServerURIs(new String[] { brokerUrl });
-
+        options.setUserName(username);
+        options.setPassword(password.toCharArray());
+        options.setCleanSession(true);
         factory.setConnectionOptions(options);
-        
         return factory;
     }
 
@@ -48,7 +54,7 @@ public class MqttConfig {
     public MqttPahoMessageDrivenChannelAdapter adapter() {
         MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(clientId,
                 mqttClientFactory(),
-                "sensor/#"); //Alle Channel unter sensor subscriben
+                "sensor/#"); // Alle Channel unter sensor subscriben
         adapter.setOutputChannel(mqttInputChannel());
         return adapter;
     }
