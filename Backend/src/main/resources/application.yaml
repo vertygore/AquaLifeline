@@ -2,20 +2,18 @@ spring:
   application:
     name: Backend
   datasource:
-      url: jdbc:postgresql://postgres:fes-wiesbadenIOT2026@db.kemipulauyfisfvlsedn.supabase.co:5432/postgres
-      username: postgres
-      password: fes-wiesbadenIOT2026
+      url: jdbc:mysql://localhost:3306/aqualifelinedb
+      username: root
+      password: root
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 mqtt:
   broker:
-    url: tcp://10.93.128.211:8884
+    url: tcp://10.93.128.211:1883
     client:
       id: SpringBootClient
-    username: root
-    password: root
 jwt:
   secret: mysecretkey1234567890mysecretkey1234567890
   expiration: 3600000
