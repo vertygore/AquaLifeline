@@ -18,7 +18,10 @@ public class AquariumService {
     }
 
     public Aquarium findBySerialNumber(String serialNumber) {
-        return this.aquariumRepository.findBySerialNumber(serialNumber);
+        System.out.println("Looking for: '" + serialNumber + "'");
+        Aquarium result = this.aquariumRepository.findBySerialNumber(serialNumber);
+        System.out.println("Result: " + result);
+        return result;
     }
 
     public List<Aquarium> getAquarienByKunde(Kunde kunde) {

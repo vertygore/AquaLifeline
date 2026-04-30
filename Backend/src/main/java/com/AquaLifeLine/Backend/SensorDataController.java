@@ -18,32 +18,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class SensorDataController {
     private final SensorDataService sensorDataService;
 
-    public SensorDataController(SensorDataService sensorDataService){
+    public SensorDataController(SensorDataService sensorDataService) {
         this.sensorDataService = sensorDataService;
     }
 
-    @GetMapping("/{sensor_id}")
-    public List<SensorData> findBySensorId(@PathVariable Long sensorId){
-        return this.sensorDataService.findBySensorId(sensorId);
+    @GetMapping("/{sensorSet_id}")
+    public List<SensorData> findBySensorId(@PathVariable Long sensorSet_Id) {
+        return this.sensorDataService.findBySensorSet_Id(sensorSet_Id);
     }
 
-    @GetMapping("/timestamp")
-    public List<SensorData> findByTimestampBetween(@RequestParam LocalDateTime start,@RequestParam LocalDateTime end){
-        return this.sensorDataService.findByTimestampBetween(start, end);
+    @GetMapping("/{sensorSetId}/timestamp")
+    public List<SensorData> findByTimestampBetween(
+            @PathVariable Long sensorSetId,
+            @RequestParam LocalDateTime start,
+            @RequestParam LocalDateTime end) {
+        return this.sensorDataService.findByTimestampBetween(sensorSetId, start, end);
     }
-    
+
     @PatchMapping("/edit/{sensorData_id}")
-    public SensorData editSensorData(@PathVariable Long sensorDataId ,@RequestBody SensorData sensorData){
+    public SensorData editSensorData(@PathVariable Long sensorDataId, @RequestBody SensorData sensorData) {
         return sensorDataService.editSensorData(sensorDataId, sensorData);
     }
 
     @PostMapping("/create")
-    public SensorData createSensorData(@RequestBody SensorData sensorData){
+    public SensorData createSensorData(@RequestBody SensorData sensorData) {
         return this.sensorDataService.save(sensorData);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long sensorId){
-        this.sensorDataService.deleteById(sensorId);
+    @DeleteMapping("/delete/{sensorSet_id}")
+    public void deleteById(@PathVariable Long sensorSet_Id) {
+        this.sensorDataService.deleteById(sensorSet_Id);
     }
 }

@@ -1,8 +1,9 @@
 package com.AquaLifeLine.Backend;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
- 
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,10 +20,12 @@ public class AquariumController {
 
     private final AquariumService aquariumService;
     private final KundenService kundenService;
+    private final SensorDataService sensorDataService;
 
-    public AquariumController(AquariumService aquariumService, KundenService kundenService) {
+    public AquariumController(AquariumService aquariumService, KundenService kundenService, SensorDataService sensordataService) {
         this.aquariumService = aquariumService;
         this.kundenService = kundenService;
+        this.sensorDataService = sensordataService;
     }
 
     @GetMapping
@@ -45,6 +49,21 @@ public class AquariumController {
         return aquariumService.getAquariumById(id);
     }
 
+    @GetMapping("/{id}/daten")
+    public List<SensorData> getSensorData(@PathVariable long id) {
+        Aquarium aquarium = aquariumService.getAquariumById(id);
+        return sensorDataService.findBySensorSet_Id(aquarium.getSensorSet().getId());
+    }
+
+    @GetMapping("/{id}/daten/timestamp")
+    public List<SensorData> getSensorDataByTimestamp(
+            @PathVariable long id,
+            @RequestParam LocalDateTime start,
+            @RequestParam LocalDateTime end) {
+        Aquarium aquarium = aquariumService.getAquariumById(id);
+        return sensorDataService.findByTimestampBetween(aquarium.getSensorSet().getId(), start, end);
+    }
+
     @PostMapping("/assign/{serialNumber}")
     public ResponseEntity<?> assignAquarium(@PathVariable String serialNumber, Principal principal) {
         Aquarium aquarium = aquariumService.findBySerialNumber(serialNumber);
@@ -52,7 +71,7 @@ public class AquariumController {
             return ResponseEntity.status(404).body("Aquarium nicht gefunden.");
         }
         Kunde kunde = kundenService.getKundeByName(principal.getName());
-        if(kunde.getAquarien().contains(aquarium)){
+        if (kunde.getAquarien().contains(aquarium)) {
             return ResponseEntity.status(404).body("Aquarium bereits zugewiesen.");
         }
         kunde.getAquarien().add(aquarium);
@@ -65,9 +84,7 @@ public class AquariumController {
         do {
             aquarium.setSerialNumber(SerialNumberGenerator.generateSerialNumber());
         } while (aquariumService.existsBySerialNumber(aquarium.getSerialNumber()));
-        aquariumService.saveAquarium(aquarium);
-        
-        return aquarium;
+        return aquariumService.saveAquarium(aquarium);
     }
 
     @DeleteMapping("/{id}")

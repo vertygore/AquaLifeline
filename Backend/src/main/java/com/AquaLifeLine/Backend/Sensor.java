@@ -1,7 +1,5 @@
 package com.AquaLifeLine.Backend;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -13,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +32,5 @@ public class Sensor {
     @JoinColumn(name= "sensorSet_id")
     private SensorSet sensorSet;
 
-    @OneToMany(mappedBy = "sensor")
-    private List<SensorData> daten;
+
 }

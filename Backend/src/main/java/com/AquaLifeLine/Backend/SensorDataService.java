@@ -13,12 +13,12 @@ public class SensorDataService {
         this.sensorDataRepository = sensorDataRepository;
     }
 
-    public List<SensorData> findByTimestampBetween(LocalDateTime start, LocalDateTime end) {
-        return this.sensorDataRepository.findByTimestampBetween(start, end);
+    public List<SensorData> findByTimestampBetween(Long sensorSetId, LocalDateTime start, LocalDateTime end) {
+        return this.sensorDataRepository.findByTimestampBetween(sensorSetId, start, end);
     }
 
-    public List<SensorData> findBySensorId(Long sensorId) {
-        return sensorDataRepository.findBySensorId(sensorId);
+    public List<SensorData> findBySensorSet_Id(Long sensorId) {
+        return sensorDataRepository.findBySensorSet_Id(sensorId);
     }
 
     public SensorData save(SensorData sensorData) {
@@ -38,8 +38,8 @@ public class SensorDataService {
             .orElseThrow(() -> new RuntimeException("Fehler beim bearbeiten."));
     }
 
-    public void deleteById(Long sensorId){
-        this.sensorDataRepository.deleteById(sensorId);
+    public void deleteById(Long sensorSet_Id){
+        this.sensorDataRepository.deleteById(sensorSet_Id);
     }
 
 }

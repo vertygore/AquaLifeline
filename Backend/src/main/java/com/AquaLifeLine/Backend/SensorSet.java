@@ -30,4 +30,7 @@ public class SensorSet {
     @OneToOne
     @JoinColumn(name = "aquarium_id")
     private Aquarium aquarium;
+
+    @OneToMany(mappedBy = "sensorSet")
+    private List<SensorData> daten;
 }
