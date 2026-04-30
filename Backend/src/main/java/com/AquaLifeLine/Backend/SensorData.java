@@ -35,6 +35,7 @@ public class SensorData {
 
     private LocalDateTime timestamp;
 
+    
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     private Sensor sensor;

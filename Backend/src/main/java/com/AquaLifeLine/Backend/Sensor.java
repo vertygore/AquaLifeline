@@ -2,6 +2,8 @@ package com.AquaLifeLine.Backend;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,6 +30,7 @@ public class Sensor {
     @Enumerated(EnumType.STRING)
     private SensorType sensortype;
 
+    @JsonIgnore 
     @ManyToOne
     @JoinColumn(name= "sensorSet_id")
     private SensorSet sensorSet;

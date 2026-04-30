@@ -2,6 +2,8 @@ package com.AquaLifeLine.Backend;
 
 import java.util.HashSet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,6 +27,7 @@ public class Kunde {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password; 
 

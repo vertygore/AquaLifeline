@@ -2,7 +2,8 @@ package com.AquaLifeLine.Backend;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,13 +22,11 @@ public class SensorSet {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = true)
-    private String name;
-
+ 
     @OneToMany(mappedBy = "sensorSet")
     private List<Sensor> sensoren;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "aquarium_id")
     private Aquarium aquarium;
