@@ -13,8 +13,8 @@ public class SensorDataService {
         this.sensorDataRepository = sensorDataRepository;
     }
 
-    public List<SensorData> findByTimestampBetween(Long sensorSetId, LocalDateTime start, LocalDateTime end) {
-        return this.sensorDataRepository.findByTimestampBetween(sensorSetId, start, end);
+    public List<SensorData> findBySensorSet_IdAndTimestampBetween(Long sensorSetId, LocalDateTime start, LocalDateTime end) {
+        return this.sensorDataRepository.findBySensorSet_IdAndTimestampBetween(sensorSetId, start, end);
     }
 
     public List<SensorData> findBySensorSet_Id(Long sensorId) {

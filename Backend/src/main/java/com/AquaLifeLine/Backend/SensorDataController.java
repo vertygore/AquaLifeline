@@ -28,11 +28,11 @@ public class SensorDataController {
     }
 
     @GetMapping("/{sensorSetId}/timestamp")
-    public List<SensorData> findByTimestampBetween(
+    public List<SensorData> findBySensorSet_IdAndTimestampBetween(
             @PathVariable Long sensorSetId,
             @RequestParam LocalDateTime start,
             @RequestParam LocalDateTime end) {
-        return this.sensorDataService.findByTimestampBetween(sensorSetId, start, end);
+        return this.sensorDataService.findBySensorSet_IdAndTimestampBetween(sensorSetId, start, end);
     }
 
     @PatchMapping("/edit/{sensorData_id}")

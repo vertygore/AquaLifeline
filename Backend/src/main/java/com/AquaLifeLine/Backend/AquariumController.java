@@ -61,7 +61,7 @@ public class AquariumController {
             @RequestParam LocalDateTime start,
             @RequestParam LocalDateTime end) {
         Aquarium aquarium = aquariumService.getAquariumById(id);
-        return sensorDataService.findByTimestampBetween(aquarium.getSensorSet().getId(), start, end);
+        return sensorDataService.findBySensorSet_IdAndTimestampBetween(aquarium.getSensorSet().getId(), start, end);
     }
 
     @PostMapping("/assign/{serialNumber}")
