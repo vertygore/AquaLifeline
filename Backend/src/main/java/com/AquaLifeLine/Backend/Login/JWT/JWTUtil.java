@@ -29,7 +29,7 @@ public class JWTUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // Token löuft in 1 Stunde ab
+                .setExpiration(new Date(System.currentTimeMillis() + 12000000)) // Token löuft in 1 Minute ab
                 .signWith(key)
                 .compact();
 
